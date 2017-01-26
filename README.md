@@ -1,6 +1,8 @@
 # cartracker
 
 Experimenting with Django so I started to build this app to keep track of the fuel I use in my car.
+Status: It has a basic CRUD system with Bootstrap but UI is far from perfect. 
+
 
 ## Installation
 1. Clone podcastweb repo.
