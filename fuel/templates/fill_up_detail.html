@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<a class="btn btn-default" role="button" href="{% url 'fuel_edit' car.id fill_up.id %}">Edit</a>
+
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Date</td>
+            <td>{{ fill_up.date_time}}</td>
+        </tr>
+
+        <tr>
+            <td>Vehicle</td>
+            <td>{{ fill_up.car.name }}</td>
+        </tr>
+
+        <tr>
+            <td>Odometer</td>
+            <td>{{ fill_up.odometer|intcomma }}</td>
+        </tr>
+
+        <tr>
+            <td>Filled Up</td>
+            <td>{{ fill_up.get_filled_up_display }}</td>
+        </tr>
+
+
+        <tr>
+            <td>Cost/Gallon</td>
+            <td>{{ fill_up.formatted_unit_cost}}</td>
+        </tr>
+
+
+        <tr>
+            <td>Gallons</td>
+            <td>{{ fill_up.unit_quantity }}</td>
+        </tr>
+
+
+        <tr>
+            <td>Total Cost</td>
+            <td>{{ fill_up.formatted_total_cost }}</td>
+        </tr>
+
+        <tr>
+            <td>Fuel Economy (MPG)</td>
+            <td>{{ fill_up.fuel_economy }}</td>
+        </tr>
+
+        <tr>
+            <td>Octane</td>
+            <td>{{ fill_up.get_octane_display }}</td>
+        </tr>
+
+
+        <tr>
+            <td>Gas Brand</td>
+            <td>{{ fill_up.fuel_brand }}</td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td>{{ fill_up.location }}</td>
+        </tr>
+
+        <tr>
+            <td>Payment Type</td>
+            <td>{{ fill_up.payment }}</td>
+        </tr>
+
+        <tr>
+            <td>Tags</td>
+            <td>{{ fill_up.tags }}</td>
+        </tr>
+        <tr>
+            <td>Notes</td>
+            <td>{{ fill_up.notes }}</td>
+        </tr>
+
+        <tr>
+            <td>Services</td>
+            <td>{{ fill_up.services }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

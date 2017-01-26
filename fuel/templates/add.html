@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6"><h3>{{ car.name }}</h3></div>
+    <div class="col-md-6"></div>
+
+</div>
+
+<form action="{% url 'fuel_add_for_car' car.id %}" method="post" class="form-horizontal">
+    {% csrf_token %}
+    <input type="hidden" name="id_car" id="id_car" value="{{ car.id }}">
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.errors }}
+        <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}</label>
+        <div class="col-sm-10">
+        {{ field }}
+        </div>
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="sub-header">{{ car.name }}</h2>
+
+<h3>Identification</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>VIN</td>
+            <td>{{ car.vin }}</td>
+        </tr>
+
+        <tr>
+            <td>License Plate</td>
+            <td>{{ car.license_plate }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h3>Manufacturer &amp; Model</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Year</td>
+            <td>{{ car.year}}</td>
+        </tr>
+
+        <tr>
+            <td>Manufacturer</td>
+            <td>{{ car.manufacturer.name }}</td>
+        </tr>
+
+        <tr>
+            <td>Model</td>
+            <td>{{ car.model.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Tires</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Tire Size</td>
+            <td>{{ car.tire_size}}</td>
+        </tr>
+
+        <tr>
+            <td>Tire Pressure</td>
+            <td>{{ car.tire_pressure }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Important Dates</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td>Purchased on</td>
+            <td>{{ car.purchase_date }}</td>
+        </tr>
+        {% if car.sell_date is not None %}
+        <tr>
+            <td>Sold on</td>
+            <td>{{ car.sell_date }}</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+<div class="dropup">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        Actions
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li><a href="{% url 'fuel_add_for_car' car.id %}">Add Gas</a></li>
+        <li><a href="{% url 'fuel_view_for_car' car.id %}">View Fill ups</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="{% url 'car_edit' car.id %}">Edit {{ car.name }}</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="{% url 'importer_add' car.id %}">Import from Gas Cubby</a></li>
+    </ul>
+</div>
+
+{% endblock content %}

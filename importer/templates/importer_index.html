@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Importer</h2>
+<p>Import your Gas Cubby CSV file for {{ car.name }}</p>
+<form action="{% url 'importer_add' car.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+    {{ form }}
+    </table>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

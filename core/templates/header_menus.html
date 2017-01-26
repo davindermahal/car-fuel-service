@@ -1,0 +1,54 @@
+<ul class="nav navbar-nav">
+    <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle {% if current_page == 'members' %}active{% endif %}" data-toggle="dropdown"
+           href="{% url 'car_index' %}" role="button" aria-haspopup="true" aria-expanded="false">
+            Cars <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            {% if cars %}
+            {% for car in cars %}
+            <li><a href="{% url 'car_detail' car.id %}">{{ car.name }}</a></li>
+            {% endfor %}
+            {% endif %}
+
+            <li class="divider"></li>
+            <li {% if current_page == 'members' %} class="active"{% endif %}><a href="{% url 'car_add' %}">Add new car</a></li>
+            {% if cars %}
+            <li {% if current_page == 'members' %} class="active"{% endif %}><a href="{% url 'car_index' %}">Index View</a></li>
+            {% endif %}
+        </ul>
+    </li>
+    {% if cars %}
+       <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle {% if current_page == 'members' %}active{% endif %}" data-toggle="dropdown"
+           href="{% url 'car_index' %}" role="button" aria-haspopup="true" aria-expanded="false">
+            Fill Ups <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            {% if cars %}
+            {% for car in cars %}
+            <li><a href="{% url 'fuel_view_for_car' car.id %}">{{ car.name }}</a></li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </li>
+
+       <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle {% if current_page == 'members' %}active{% endif %}" data-toggle="dropdown"
+           href="{% url 'car_index' %}" role="button" aria-haspopup="true" aria-expanded="false">
+            Add Gas <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            {% if cars %}
+            {% for car in cars %}
+            <li><a href="{% url 'fuel_add_for_car' car.id %}">{{ car.name }}</a></li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </li>
+    {% endif %}
+</ul>
+
+
+
+

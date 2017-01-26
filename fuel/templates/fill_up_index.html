@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ car.name }}</h2>
+<h5>{{ car.year }} {{ car.manufacturer }} {{ car.model }}</h5>
+
+{% if fill_up_list %}
+<div class="list-group">
+{% for fill in fill_up_list %}
+    <a href="{% url 'fuel_detail' car.id fill.id %}" class="list-group-item">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <h4 class="list-group-item-heading">{{ fill.date_time|date:"D, N d, Y" }} </h4>
+                <p class="list-group-item-text">{{ fill.unit_quantity }} gal</p>
+            </div>
+            <div class="col-xs-6 col-md-4">
+                {% if fill.fuel_economy != None %}
+                    <p class="list-group-item-text text-right">{{ fill.fuel_economy }} MPG</p>
+                {% endif %}
+                <p class="list-group-item-text text-right">${{ fill.formatted_total_cost }}</p>
+                <p class="list-group-item-text text-right">${{ fill.formatted_unit_cost }}/gal</p>
+            </div>
+        </div>
+    </a>
+{% endfor %}
+</div>
+{% else %}
+<p>You have not filled up your car yet. <a href="{% url 'fuel_add_for_car' car_id=car.id %}">Fill up now</a>.</p>
+{% endif %}
+
+{% endblock content %}

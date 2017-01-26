@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="sub-header">Your cars</h2>
+
+{% if car_list %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Car</th>
+            <th>Gas</th>
+            <th>Fill ups</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for car in car_list %}
+        <tr>
+            <td><a href="{% url 'car_detail' car.id %}">{{ car.name }} ({{ car.year }} {{ car.manufacturer.name }} {{ car.model.name }}) </a></td>
+            <td><a href="{% url 'fuel_add_for_car' car.id %}">Add</a></td>
+            <td><a href="{% url 'fuel_view_for_car' car.id %}">View</a></td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+<h3><a href="{% url 'car_add' %}">Add a Car</a></h3>
+{% endif %}
+
+{% endblock content %}
